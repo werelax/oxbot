@@ -8,7 +8,6 @@ module.exports = (token) => {
 
   return (method, params = {}) => {
     const url = `${BASE_URL}/${method}`;
-    console.log('rpc', url, method, params);
     return new Promise((resolve, reject) => {
       request(
         { url,

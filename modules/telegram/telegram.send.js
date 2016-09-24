@@ -4,7 +4,6 @@ const _ = require('lodash');
 const telegram = require('./telegram.rpc');
 
 function sendText(rpc, userid, text, quickReplies) {
-  console.log('hola 1');
   const msg = {
     chat_id: userid,
     text,
