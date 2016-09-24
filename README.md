@@ -54,5 +54,25 @@ module.exports = (chat) => {
 };
 ```
 
+From './config/config.json':
+
+```json
+{
+    "bot": {
+        "port": 7001,
+        "db": {
+            "host": "localhost",
+            "port": "27017",
+            "database": "fitbot-bot",
+            "collection": "user_states"
+        },
+        "telegram": {
+            "interval": 500,
+            "token": "294235837:AAF_sv-hyVkTvQj4C8ni8yW2Tp4xsg37iJc"
+        }
+    }
+}
+```
+
 Good luck!
 
