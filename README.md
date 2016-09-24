@@ -6,14 +6,14 @@ From your `index.js`:
 
 ```javascript
 const config = require('config');
-const botox = require('./botox');
+const oxbot = require('oxbot');
 const treeNodes = require('./modules/tree');
 
-botox
+oxbot
   .setup(config.bot)
   .then(({ treeSet, server, queue, db }) => {
     const token = config.bot.telegram.token;
-    const chat = botox.telegram(token);
+    const chat = oxbot.telegram(token);
     const tree = treeNodes(chat);
     treeSet(tree);
 
@@ -22,21 +22,19 @@ botox
   .catch(console.error);
 ```
 
-From your `./modules/tree`:
+From your `./modules/tree.js`:
 
 ```javascript
 const _ = require('lodash');
 
 module.exports = chat => _.concat(
   // simple demo bot
-  require('./tree.fitbot')(chat),
-  require('./tree.fitbot.s1')(chat),
-  require('./tree.fitbot.s2')(chat),
-  require('./tree.fitbot.s3')(chat)
+  require('./tree.s1')(chat),
+  require('./tree.s2')(chat)
 );
 ```
 
-From `./modules/tree/tree.fitbot`:
+From `./modules/tree/tree.s1.js`:
 
 ```javascript
 module.exports = (chat) => {
@@ -68,7 +66,7 @@ From './config/config.json':
         },
         "telegram": {
             "interval": 500,
-            "token": "294235837:AAF_sv-hyVkTvQj4C8ni8yW2Tp4xsg37iJc"
+            "token": "token"
         }
     }
 }
