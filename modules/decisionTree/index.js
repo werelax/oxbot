@@ -15,7 +15,7 @@ function advance(tree, currentNode, state, input, db) {
     return runSpecialCommand(input, state, currentNode, tree);
   }
   return Promise
-    .cast(currentNode.advance(tree, state, input, db))
+    .cast(currentNode.advance(_.assign({ tree, state, db }), input))
     .then(nextPath => nextPath && findNode(nextPath, tree));
 }
 
@@ -42,7 +42,7 @@ function runAndAdvance(tree, currentNode, state, input, db) {
   return doRunNode(currentNode, state, input, db)
     .then((_nextState) => {
       nextState = _nextState;
-      return currentNode.advance(tree, nextState, input, db);
+      return currentNode.advance(_.assign({ tree, state: nextState, db }), input);
     })
     .then(nextPath => getNode(tree, nextPath, nextState))
     .then(nextNode => runNode(tree, nextNode, nextState, input, db));

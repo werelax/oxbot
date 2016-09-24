@@ -6,14 +6,14 @@ From your `index.js`:
 
 ```javascript
 const config = require('config');
-const oxbot = require('oxbot');
+const botox = require('./botox');
 const treeNodes = require('./modules/tree');
 
-oxbot
+botox
   .setup(config.bot)
   .then(({ treeSet, server, queue, db }) => {
     const token = config.bot.telegram.token;
-    const chat = oxbot.telegram(token);
+    const chat = botox.telegram(token);
     const tree = treeNodes(chat);
     treeSet(tree);
 
@@ -22,19 +22,21 @@ oxbot
   .catch(console.error);
 ```
 
-From your `./modules/tree.js`:
+From your `./modules/tree`:
 
 ```javascript
 const _ = require('lodash');
 
 module.exports = chat => _.concat(
   // simple demo bot
-  require('./tree.s1')(chat),
-  require('./tree.s2')(chat)
+  require('./tree.fitbot')(chat),
+  require('./tree.fitbot.s1')(chat),
+  require('./tree.fitbot.s2')(chat),
+  require('./tree.fitbot.s3')(chat)
 );
 ```
 
-From `./modules/tree/tree.s1.js`:
+From `./modules/tree/tree.fitbot`:
 
 ```javascript
 module.exports = (chat) => {
@@ -52,7 +54,7 @@ module.exports = (chat) => {
 };
 ```
 
-From './config/config.json':
+From './config/default.json':
 
 ```json
 {
@@ -66,11 +68,10 @@ From './config/config.json':
         },
         "telegram": {
             "interval": 500,
-            "token": "token"
+            "token": "YOUR-TOKEN"
         }
     }
 }
 ```
 
 Good luck!
-

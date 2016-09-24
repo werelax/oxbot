@@ -54,7 +54,7 @@ module.exports = {
     //  d) ???
     const { userid } = action;
     const { path } = state;
-    const text = _.get(action, 'text', null);
+    const text = _.get(action, 'payload.text', null);
     const input = {
       type: 'message',
       /* eslint-disable */
