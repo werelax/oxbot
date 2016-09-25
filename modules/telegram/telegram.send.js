@@ -10,7 +10,7 @@ function sendText(rpc, userid, text, quickReplies) {
   };
   if (quickReplies) {
     _.assign(msg, {
-      reply_markup: { inline_keyboard: [quickReplies] },
+      reply_markup: { keyboard: quickReplies, one_time_keyboard: true },
     });
   }
   return rpc('sendMessage', msg);
@@ -32,3 +32,4 @@ module.exports = (token) => {
     sendText: (...args) => sendText(rpc, ...args)
   };
 }
+
